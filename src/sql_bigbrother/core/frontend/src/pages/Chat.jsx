@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import MessageBox from "../components/Chat/MessageBox";
 import Sidebar from "../components/Chat/Sidebar";
 import classNames from "classnames";
+import configs from "../configs";
+import axios from "axios";
 
 export default function ChatPage() {
 	const [formData, setFormData] = useState({
@@ -11,6 +13,34 @@ export default function ChatPage() {
 		model: "qwen2.5:7b",
 	});
 	const [sidebarTab, setSidebarTab] = useState("chat");
+	const [initialIntroduction, setInitialIntroduction] = useState(null);
+	const [isAutoInitialized, setIsAutoInitialized] = useState(false);
+	const [discoveredDatabases, setDiscoveredDatabases] = useState([]);
+	const [sessionId, setSessionId] = useState(null);
+	const [chatHistory, setChatHistory] = useState([]);
+
+	// Fetch initial chat state on mount
+	useEffect(() => {
+		const fetchInitialState = async () => {
+			try {
+				const response = await axios.get(`${configs["CREWAI_URL"]}/chat/init`);
+				if (response.data) {
+					setInitialIntroduction(response.data.introduction);
+					setFormData(prev => ({
+						...prev,
+						schema: response.data.sql_content || ""
+					}));
+					setRecommends(response.data.recommends || []);
+					setDiscoveredDatabases(response.data.discovered_databases?.databases || []);
+					setIsAutoInitialized(true);
+				}
+			} catch (error) {
+				console.log("Auto-initialization not available:", error.message);
+			}
+		};
+
+		fetchInitialState();
+	}, []);
 
 	const handleChangeForm = useCallback(
 		(name, value) => {
@@ -32,7 +62,7 @@ export default function ChatPage() {
 				className={classNames({
 					"h-[100svh] flex flex-col items-center shadow-2xl bg-slate-800/50 backdrop-blur-md border-r border-white/10 transition-all": true,
 					"w-[25rem]": sidebarTab === "chat",
-					"w-[35rem]": sidebarTab === "schema",
+					"w-[35rem]": sidebarTab === "schema" || sidebarTab === "databases",
 					hidden: !showDatabase,
 				})}
 			>
@@ -44,6 +74,7 @@ export default function ChatPage() {
 					setSidebarTab={setSidebarTab}
 					handleToggleDatabase={handleToggleDatabase}
 					setRecommends={setRecommends}
+					discoveredDatabases={discoveredDatabases}
 				/>
 			</div>
 			<div
@@ -57,10 +88,17 @@ export default function ChatPage() {
 					formData={formData}
 					handleChangeForm={handleChangeForm}
 					showDatabase={showDatabase}
-					handleToggleDatabase={handleToggleDatabase}
+					handleToggleToggle={handleToggleDatabase}
 					setSidebarTab={setSidebarTab}
 					recommends={recommends}
 					setRecommends={setRecommends}
+					initialIntroduction={initialIntroduction}
+					isAutoInitialized={isAutoInitialized}
+					sessionId={sessionId}
+					setSessionId={setSessionId}
+					chatHistory={chatHistory}
+					setChatHistory={setChatHistory}
+					discoveredDatabases={discoveredDatabases}
 				/>
 			</div>
 		</div>

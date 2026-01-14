@@ -2,14 +2,82 @@
 
 [![Powered by Kedro](https://img.shields.io/badge/powered_by-kedro-ffc900?logo=kedro)](https://kedro.org)
 
+## 🛠️ Technologies Stack
+
+### Multi-Agent AI Framework
+- **[CrewAI](https://github.com/joaomdmoura/crewai)** (v1.6.1+) - Orchestrates specialized AI agents for SQL generation, query optimization, schema analysis, and database interaction
+- **[LangGraph](https://github.com/langchain-ai/langgraph)** (v1.0.6+) - State machine framework for building agentic workflows, used for database discovery and multi-step reasoning
+- **[LangChain Community](https://github.com/langchain-ai/langchain)** (v0.4.1+) - LLM integration and prompt management
+- **[LangChain Ollama](https://github.com/langchain-ai/langchain)** (v1.0.0+) - Local LLM integration with Ollama
+
+### Local AI/LLM
+- **[Ollama](https://ollama.ai)** - Local LLM inference engine (supports Qwen 2.5, Llama, GPT-OSS, and more)
+- **Supported Models**:
+  - `qwen2.5:7b` - Fast & efficient (4.7GB)
+  - `qwen2.5:14b` - Balanced performance (9.0GB)
+  - `gpt-oss:20b` - Most capable (13GB)
+
+### Backend Framework
+- **[Kedro](https://kedro.org)** (v1.1.1) - Data pipeline framework for orchestrating ML workflows
+- **[FastAPI](https://fastapi.tiangolo.com/)** (v0.123.4+) - High-performance Python API framework
+- **[Uvicorn](https://www.uvicorn.org/)** (v0.38.0+) - ASGI server for FastAPI
+- **[Python-dotenv](https://github.com/theskumar/python-dotenv)** (v1.2.1+) - Environment configuration
+- **[Python-multipart](https://github.com/andrew-d/python-multipart)** (v0.0.20+) - File upload support
+
+### Database Connectors & Libraries
+- **[PyMySQL](https://github.com/PyMySQL/PyMySQL)** (v1.1.2+) - Pure Python MySQL client
+- **[mysql-connector-python](https://dev.mysql.com/doc/connector-python/en/)** (v9.5.0+) - Official MySQL connector
+- **[psycopg2](https://github.com/psycopg/psycopg2)** - PostgreSQL adapter (optional)
+- **[sqlite3](https://docs.python.org/3/library/sqlite3.html)** - Built-in SQLite support
+
+### Authentication Service (Node.js)
+- **[Express.js](https://expressjs.com/)** (v4.19.2+) - Web application framework
+- **[Mongoose](https://mongoosejs.com/)** (v8.3.2+) - MongoDB object modeling
+- **[bcrypt](https://github.com/kelektiv/node.bcrypt.js)** (v5.1.1+) - Password hashing
+- **[jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)** (v9.0.2+) - JWT authentication
+- **[express-session](https://github.com/expressjs/session)** (v1.18.0+) - Session management
+- **[cors](https://github.com/expressjs/cors)** (v2.8.5+) - CORS middleware
+- **[helmet](https://helmetjs.github.io/)** (v7.1.0+) - Security headers
+- **[morgan](https://github.com/expressjs/morgan)** (v1.10.0+) - HTTP request logger
+
+### Frontend Framework & UI
+- **[React](https://react.dev/)** (v18.2.0) - UI framework
+- **[Vite](https://vitejs.dev/)** (v5.3.1+) - Build tool and dev server
+- **[React Router DOM](https://reactrouter.com/)** (v6.23.1+) - Client-side routing
+- **[Axios](https://axios-http.com/)** (v1.7.2+) - HTTP client
+- **[TailwindCSS](https://tailwindcss.com/)** (v3.4.4+) - Utility-first CSS framework
+- **[DaisyUI](https://daisyui.com/)** (v4.12.2+) - Tailwind component library
+- **[React Icons](https://react-icons.github.io/react-icons/)** (v5.2.1+) - Icon library
+- **[React Markdown](https://remarkjs.github.io/react-markdown/)** (v9.0.1+) - Markdown rendering
+- **[React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)** (v15.5.0+) - Code syntax highlighting
+- **[Prism.js](https://prismjs.com/)** (v1.29.0+) - Syntax highlighting theme
+- **[Nivo](https://nivo.rocks/)** (v0.87.0+) - Data visualization library
+- **[D3.js](https://d3js.org/)** (v7.9.0+) - Data-driven visualizations
+- **[Moment.js](https://momentjs.com/)** (v2.30.1+) - Date manipulation
+- **[Socket.io Client](https://socket.io/)** (v4.7.5+) - Real-time bidirectional communication
+
+### Data Science & Visualization
+- **[scikit-learn](https://scikit-learn.org/)** (v1.5.1+) - Machine learning library
+- **[seaborn](https://seaborn.pydata.org/)** (v0.12.1+) - Statistical data visualization
+- **[Jupyter Lab](https://jupyter.org/)** (v3.0+) - Interactive development environment
+- **[Kedro-viz](https://github.com/kedro-org/kedro-viz)** (v6.7.0+) - Pipeline visualization
+
+### Development & Utilities
+- **[uv](https://github.com/astral-sh/uv)** - Fast Python package installer
+- **[nodemon](https://nodemon.io/)** (v3.1.2+) - Node.js auto-restart utility
+- **[ESLint](https://eslint.org/)** (v8.57.0+) - JavaScript linter
+- **[Autoprefixer](https://github.com/postcss/autoprefixer)** (v10.4.19+) - CSS vendor prefixing
+- **[PostCSS](https://postcss.org/)** (v8.4.38+) - CSS transformation tool
+
 ## Overview
 
-SQL BigBrother is a multi-agent AI-powered SQL optimization system built with Kedro 1.1.1. This system uses CrewAI agents and **local Ollama models** to help users generate, optimize, and analyze SQL queries based on database schemas. The application runs entirely locally without requiring external API keys.
+SQL BigBrother is a multi-agent AI-powered SQL optimization system built with Kedro 1.1.1. This system uses **CrewAI agents** orchestrating specialized roles for SQL query generation, optimization, and analysis, combined with **LangGraph** for stateful agentic workflows like database discovery. The platform leverages **local Ollama models** to provide enterprise-grade database intelligence entirely offline, without requiring external API keys or cloud dependencies.
 
 ## Features
 
 - 🤖 **Local AI Processing**: Uses Ollama for local LLM inference (no external API keys required)
-- 📊 **Schema Upload & Analysis**: Upload SQL schema files and get AI-generated insights
+- � **Database Discovery Agent**: Automatic detection of PostgreSQL, MySQL, and SQLite databases using LangGraph agents
+- �📊 **Schema Upload & Analysis**: Upload SQL schema files and get AI-generated insights
 - 💬 **Interactive Chat Interface**: Ask questions about your database schema
 - 🔍 **SQL Query Generation**: Generate optimized SQL queries based on natural language requests
 - 📈 **Query Analysis**: Get explanations and optimizations for existing SQL queries
@@ -92,15 +160,81 @@ sql-bigbrother/
 
 ## Usage
 
+### Chat Mode with Automatic Database Discovery & Schema Initialization
+
+When the server starts, it automatically:
+1. **Discovers all local databases**: PostgreSQL, MySQL, and SQLite installations
+2. **Auto-initializes chat**: If SQLite databases are found, automatically extracts and loads the first one's schema
+3. **Generates welcome introduction**: An AI agent creates a personalized welcome message explaining the loaded database
+
+The discovered databases and schema are immediately available for querying—no manual upload required!
+
 ### API Endpoints
 
 #### 1. Health Check
 ```bash
 curl http://localhost:8000/health
-# Response: {"status":"healthy","service":"SQL BigBrother"}
+# Response: 
+{
+  "status": "healthy",
+  "service": "SQL BigBrother",
+  "databases_discovered": 3,
+  "chat_initialized": true
+}
 ```
 
-#### 2. Ask Chat (SQL Query Generation)
+#### 2. Get Initial Chat State (NEW)
+```bash
+# Get the auto-generated welcome message and loaded schema
+curl http://localhost:8000/chat/init
+
+# Expected Response:
+{
+  "title": "Cinema Database",
+  "introduction": "Welcome! 👋 I've automatically loaded the Cinema Database schema for you...",
+  "recommends": ["Question 1", "Question 2", "Question 3", "Question 4"],
+  "sql_content": "CREATE TABLE...",
+  "auto_initialized": true,
+  "discovered_databases": {
+    "databases": [...],
+    "summary": "..."
+  }
+}
+```
+
+#### 3. Get Discovered Databases
+```bash
+curl http://localhost:8000/databases
+
+# Expected Response:
+{
+  "databases": [
+    {
+      "type": "postgresql",
+      "status": "available",
+      "output": "psql (PostgreSQL) 15.3"
+    },
+    {
+      "type": "mysql",
+      "status": "available",
+      "output": "mysql Ver 8.0.33"
+    }
+  ],
+  "os_type": "darwin",
+  "commands_executed": ["psql --version: SUCCESS", ...],
+  "summary": "{'total_found': 2, 'databases_by_type': {'postgresql': 1, 'mysql': 1}}",
+  "discovery_timestamp": "2026-01-14T10:30:00"
+}
+```
+
+#### 3. Rediscover Databases (NEW)
+```bash
+curl -X POST http://localhost:8000/databases/rediscover
+
+# Triggers a fresh database discovery scan
+```
+
+#### 4. Ask Chat (SQL Query Generation)
 ```bash
 curl -X 'POST' \
   'http://localhost:8000/ask-chat' \
@@ -112,12 +246,13 @@ curl -X 'POST' \
 {
   "query": "SELECT id, name, email FROM users;",
   "explain": "",
-  "rows": [...],  # If database is connected
-  "columns": [...] # If database is connected
+  "rows": [...],
+  "columns": [...],
+  "available_databases": [...]  # Includes discovered databases
 }
 ```
 
-#### 3. Initialize Chat (Schema Upload)
+#### 5. Initialize Chat (Schema Upload)
 ```bash
 curl -X 'POST' \
   'http://localhost:8000/init-chat' \
@@ -128,24 +263,82 @@ curl -X 'POST' \
 {
   "title": "Generated Schema Title",
   "recommends": ["Recommended question 1", "Recommended question 2"],
-  "sql_content": "Original schema content"
+  "sql_content": "Original schema content",
+  "discovered_databases": {
+    "count": 3,
+    "databases": [...],
+    "summary": "Database discovery summary"
+  }
 }
+```
+
+#### 6. Auto-Create Schema from Discovered Database (NEW)
+```bash
+# Automatically extract and process schema from a discovered database
+curl -X 'POST' \
+  'http://localhost:8000/auto-schema' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'db_index=0'
+
+# Expected Response:
+{
+  "title": "Auto-Generated Schema Title",
+  "recommends": ["Recommended question 1", "Recommended question 2"],
+  "sql_content": "Extracted schema content",
+  "auto_generated": true,
+  "source_database": {
+    "type": "sqlite",
+    "path": "/path/to/database.db"
+  }
+}
+```
+
+#### 7. Extract Schema with Connection Parameters (NEW)
+```bash
+# For SQLite
+curl -X 'POST' \
+  'http://localhost:8000/extract-schema' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'db_type=sqlite&path=/path/to/database.db'
+
+# For PostgreSQL
+curl -X 'POST' \
+  'http://localhost:8000/extract-schema' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'db_type=postgresql&host=localhost&port=5432&database=mydb&username=user&password=pass'
+
+# For MySQL
+curl -X 'POST' \
+  'http://localhost:8000/extract-schema' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'db_type=mysql&host=localhost&port=3306&database=mydb&username=user&password=pass'
 ```
 
 ### Frontend Usage
 
-#### 1. Upload Schema
+#### 1. Automatic Schema Creation (NEW)
+- Navigate to the frontend application at http://localhost:5176
+- Go to the Chat page
+- Click "Discover Databases" to see all locally discovered databases
+- Select a database and click "Auto-Generate Schema" 
+- The system will automatically extract and process the schema
+
+#### 2. Upload Schema (Traditional Method)
 - Navigate to the frontend application at http://localhost:5176
 - Go to the Chat page and click the Schema tab
 - Click "Click here to upload schema" 
 - Upload a SQL schema file (samples available in `data/01_raw/sample_schemas/`)
 
-#### 2. Ask Questions
-- Once schema is uploaded, you'll get AI-generated title and recommended questions
+#### 3. Ask Questions
+- Once schema is uploaded or auto-generated, you'll get AI-generated title and recommended questions
 - Ask natural language questions about your database
 - Request SQL queries based on your requirements
 
-#### 3. Analyze Results  
+#### 4. Analyze Results  
 - Get optimized SQL queries with explanations
 - View query execution details and performance insights
 - Save chat conversations for future reference
@@ -296,14 +489,14 @@ export OPENAI_API_KEY="your_openai_api_key"
 │  │  • Handles agent communication                     │   │
 │  └─────────────────┬──────────────────────────────────┘   │
 │                    │                                       │
-│       ┌────────────┼────────────┐                         │
-│       │            │            │                         │
-│  ┌────▼─────┐ ┌───▼──────┐ ┌──▼───────┐                 │
-│  │ SQL      │ │ Analysis │ │ Security │                 │
-│  │ Agent    │ │ Agent    │ │ Agent    │                 │
-│  └────┬─────┘ └────┬─────┘ └────┬─────┘                 │
-│       │            │            │                         │
-│       └────────────┼────────────┘                         │
+│       ┌────────────┼────────────┬────────────┐            │
+│       │            │            │            │            │
+│  ┌────▼─────┐ ┌───▼──────┐ ┌──▼───────┐ ┌─▼─────────┐   │
+│  │ SQL      │ │ Analysis │ │ Security │ │ Database  │   │
+│  │ Agent    │ │ Agent    │ │ Agent    │ │ Discovery │   │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └─┬─────────┘   │
+│       │            │            │          │             │
+│       └────────────┼────────────┴──────────┘             │
 │                    │                                       │
 │       ┌────────────▼────────────┐                         │
 │       │    LLM Integration      │                         │
@@ -329,7 +522,30 @@ Located in: `src/sql_bigbrother/core/api/`
 - `route_to_agent()` - Intelligent routing based on query type
 - `maintain_history()` - Keeps track of conversation context
 
-#### 2. SQL Agent
+#### 2. Database Discovery Agent (NEW)
+Located in: `src/sql_bigbrother/pipelines/sql_processing/nodes.py`
+
+**Responsibilities:**
+- **Automatic Database Detection**: Discovers PostgreSQL, MySQL, and SQLite installations
+- **System Command Execution**: Runs OS-specific commands to identify database services
+- **Database File Scanning**: Locates SQLite database files on the local filesystem
+- **Connection Validation**: Tests database availability and accessibility
+- **Multi-OS Support**: Works across macOS, Linux, and Windows platforms
+
+**Key Capabilities:**
+- `check_os()` - Detects operating system type
+- `discover_postgres()` - Finds PostgreSQL installations and running instances
+- `discover_mysql()` - Identifies MySQL/MariaDB services
+- `discover_sqlite()` - Locates SQLite database files
+- `summarize_discovery()` - Provides comprehensive discovery report
+
+**LangGraph Workflow:**
+```
+Start → Check OS → Discover PostgreSQL → Discover MySQL 
+     → Discover SQLite → Summarize → End
+```
+
+#### 3. SQL Agent
 Located in: `src/sql_bigbrother/core/api/prompts/`
 
 **Responsibilities:**
@@ -344,7 +560,7 @@ Located in: `src/sql_bigbrother/core/api/prompts/`
 - `validate_query()` - Checks SQL correctness
 - `explain_query()` - Provides query explanations
 
-#### 3. Analysis Agent
+#### 4. Analysis Agent
 Located in: `src/sql_bigbrother/core/api/prompts/`
 
 **Responsibilities:**
@@ -359,7 +575,7 @@ Located in: `src/sql_bigbrother/core/api/prompts/`
 - `generate_insights()` - Provides business insights
 - `suggest_visualizations()` - Recommends data viz approaches
 
-#### 4. Security Agent
+#### 5. Security Agent
 Located in: `src/sql_bigbrother/core/api/services/`
 
 **Responsibilities:**

@@ -1,6 +1,7 @@
 import React from "react";
 import {
 	LuDatabase,
+	LuHardDrive,
 	LuHelpCircle,
 	LuMessageSquare,
 	LuUpload,
@@ -88,6 +89,12 @@ export default function SchemaTab({
 					>
 						<LuDatabase size={20} />
 					</div>
+					<div
+						onClick={() => setSidebarTab("databases")}
+						className="p-3 rounded-box hover:bg-[#353535] cursor-pointer"
+					>
+						<LuHardDrive size={20} />
+					</div>
 					<div className="p-3 rounded-box hover:bg-[#353535] cursor-pointer">
 						<LuHelpCircle size={20} />
 					</div>
@@ -98,10 +105,19 @@ export default function SchemaTab({
 			</div>
 			<>
 				{formData["schema"] ? (
-					<div className="w-full flex-1 text-sm bg-[#2d2d2d] text-[#ccc] overflow-y-auto overflow-x-hidden px-1">
-						<Markdown
-							content={formatAsPreCode(formData["schema"])}
-						/>
+					<div className="w-full flex-1 flex flex-col text-sm bg-[#2d2d2d] text-[#ccc]">
+						{/* Auto-loaded badge */}
+						{!chatId && (
+							<div className="px-4 py-3 bg-blue-500/20 border-b border-blue-400/30 flex items-center gap-2">
+								<span className="text-xl">🤖</span>
+								<span className="text-sm text-blue-300">Schema auto-loaded from discovered database</span>
+							</div>
+						)}
+						<div className="flex-1 overflow-y-auto overflow-x-hidden px-1">
+							<Markdown
+								content={formatAsPreCode(formData["schema"])}
+							/>
+						</div>
 					</div>
 				) : (
 					<div className="flex flex-1 items-center justify-center w-full text-[#ccc]">

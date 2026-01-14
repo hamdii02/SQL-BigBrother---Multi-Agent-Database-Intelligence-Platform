@@ -1,7 +1,7 @@
 """SQL processing pipeline definition."""
 
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import initialize_schema_processing, process_sql_query
+from .nodes import initialize_schema_processing, process_sql_query, discover_local_databases
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -12,6 +12,13 @@ def create_pipeline(**kwargs) -> Pipeline:
     """
     return pipeline(
         [
+            node(
+                func=discover_local_databases,
+                inputs=None,
+                outputs="discovered_databases",
+                name="discover_local_databases_node",
+                tags=["initialization", "database_discovery", "ai_agents"]
+            ),
             node(
                 func=initialize_schema_processing,
                 inputs="schema_content",

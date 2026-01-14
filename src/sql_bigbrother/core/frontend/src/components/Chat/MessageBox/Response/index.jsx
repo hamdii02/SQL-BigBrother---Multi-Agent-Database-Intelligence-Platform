@@ -47,50 +47,61 @@ export default function Response({
 						<div className="flex flex-grow flex-col w-full max-w-full">
 							<div className="min-h-[20px] text-message flex flex-col items-start break-words juice:w-full juice:items-end overflow-x-auto gap-2">
 								<div className="flex w-full flex-col gap-1 juice:empty:hidden juice:first:pt-[3px]">
-									<div className="markdown prose w-full break-words dark:prose-invert dark text-sm leading-7 p-2 rounded-lg space-y-6">
-										<strong>SQL Query: </strong>
-										<Markdown content={message?.body} />
-									</div>
-
-									{message?.data?.rows?.length != 0 ? (
-										<>
-											<div className="markdown prose w-full break-words dark:prose-invert dark text-sm leading-6 p-2 rounded-lg">
-												<strong>Execution: </strong>
-											</div>
-											<Table
-												data={message?.data?.rows}
-												columns={message?.data?.columns}
-											/>
-
-											{message?.data?.rows[0]?.some((e) =>
-												isNumber(e)
-											) && (
-												<BarChart
-													data={message?.data}
-												/>
-											)}
-										</>
+									{/* Check if this is a conversational response (starts with emoji) */}
+									{message?.body?.startsWith('💬') ? (
+										<div className="markdown prose w-full break-words dark:prose-invert dark text-sm leading-7 p-4 rounded-lg bg-gradient-to-br from-slate-700/50 to-slate-600/50 border border-slate-500/30">
+											<Markdown content={message?.body.replace('💬 ', '')} />
+										</div>
 									) : (
 										<>
-											<p className="text-rose-700 text-sm p-[8px]">
-												The query execution failed.
-												Please check your request and
-												try again. <br />
-												Possible issues: <br />
-												- Irrelevant request <br />-
-												Provided conflicted columns name{" "}
-												<br />
-												- Database schema issues <br />
-											</p>
+											<div className="markdown prose w-full break-words dark:prose-invert dark text-sm leading-7 p-2 rounded-lg space-y-6">
+												<strong>SQL Query: </strong>
+												<Markdown content={message?.body} />
+											</div>
 
-											<strong>Hints:</strong>
-											<ul className="w-full flex flex-col items-start justify-center gap-2">
-												{recommends?.map((rec, idx) => {
-													return <li onClick={() => {
-														onSendMessage(chatId, rec);
-													}} className="hover:bg-[#bdc] cursor-pointer w-full p-2 rounded-lg text-sm" key={idx}>{idx + 1}. {rec}</li>
-												})}
-											</ul>
+											{message?.data?.rows?.length != 0 ? (
+												<>
+													<div className="markdown prose w-full break-words dark:prose-invert dark text-sm leading-6 p-2 rounded-lg">
+														<strong>Execution: </strong>
+													</div>
+													<Table
+														data={message?.data?.rows}
+														columns={message?.data?.columns}
+													/>
+
+													{message?.data?.rows[0]?.some((e) =>
+														isNumber(e)
+													) && (
+														<BarChart
+															data={message?.data}
+														/>
+													)}
+												</>
+											) : (
+												<>
+													<p className="text-amber-500 text-sm p-[8px] bg-amber-500/10 rounded-lg border border-amber-500/30">
+														💡 Query generated successfully. 
+														{message?.body?.includes('execute') || message?.body?.includes('run') ? 
+															<span> Say <strong>"execute"</strong> or <strong>"run the query"</strong> to see results.</span>
+															:
+															<span> No results to display yet.</span>
+														}
+													</p>
+
+													{recommends && recommends.length > 0 && (
+														<>
+															<strong>Suggestions:</strong>
+															<ul className="w-full flex flex-col items-start justify-center gap-2">
+																{recommends?.map((rec, idx) => {
+																	return <li onClick={() => {
+																		onSendMessage(chatId, rec);
+																	}} className="hover:bg-[#bdc] cursor-pointer w-full p-2 rounded-lg text-sm" key={idx}>{idx + 1}. {rec}</li>
+																})}
+															</ul>
+														</>
+													)}
+												</>
+											)}
 										</>
 									)}
 								</div>

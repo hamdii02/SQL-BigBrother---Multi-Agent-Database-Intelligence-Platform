@@ -31,6 +31,8 @@ dependencies = [
     "langchain-ollama>=1.0.0",
     "requests>=2.31.0",
     "litellm>=1.80.7",
+    "langgraph>=1.0.6",
+    "pymysql>=1.1.2",
 ]
 
 [project.scripts]

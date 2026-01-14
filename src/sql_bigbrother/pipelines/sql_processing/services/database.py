@@ -18,7 +18,7 @@ class DatabaseManager:
             'user': os.getenv('DB_USER', 'root'),  # Default to 'root'
             'password': os.getenv('DB_PASSWORD', ''),  # Default to empty password
             'setup_database': os.getenv('DB_NAME_SETUP', 'sys'),
-            'use_database': os.getenv('DB_NAME_USE', 'sql_bigbrother_temp')  # Default database name
+            'use_database': os.getenv('DB_NAME_USE', 'ecommerce_db')  # Use ecommerce_db by default
         }
         
         # Validate required configuration
@@ -29,7 +29,7 @@ class DatabaseManager:
             logger.warning("DB_PASSWORD not set, using empty password")
             self.config['password'] = ''
         if not self.config['use_database']:
-            self.config['use_database'] = 'sql_bigbrother_temp'
+            self.config['use_database'] = 'ecommerce_db'
 
     def execute(self, ssql: str) -> Dict[str, Any]:
         """Execute SQL query and return results."""
@@ -85,8 +85,23 @@ class DatabaseManager:
             
             if connection.is_connected():
                 cursor = connection.cursor()
+                
+                # Check if database exists and has tables
+                cursor.execute(f"SHOW DATABASES LIKE '{self.config['use_database']}';")
+                db_exists = cursor.fetchone() is not None
+                
+                if db_exists:
+                    # Check if database has tables
+                    cursor.execute(f"USE {self.config['use_database']};")
+                    cursor.execute("SHOW TABLES;")
+                    tables = cursor.fetchall()
+                    
+                    if tables:
+                        logger.info(f"Database {self.config['use_database']} already exists with {len(tables)} tables, skipping setup")
+                        print(f"Using existing database: {self.config['use_database']} with {len(tables)} tables")
+                        return True
                
-                # Create the database
+                # Create the database if it doesn't exist or is empty
                 cursor.execute(f"DROP DATABASE IF EXISTS {self.config['use_database']};")
                 cursor.execute(f"CREATE DATABASE {self.config['use_database']};")
                 cursor.execute(f"USE {self.config['use_database']};")

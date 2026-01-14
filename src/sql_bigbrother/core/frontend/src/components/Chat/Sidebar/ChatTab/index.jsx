@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
 	LuDatabase,
+	LuHardDrive,
 	LuHelpCircle,
 	LuMessageSquare,
 	LuPencil,
@@ -49,6 +50,12 @@ export default function ChatTab({
 						className="p-2 rounded-xl hover:bg-white/10 cursor-pointer transition-colors"
 					>
 						<LuDatabase size={18} />
+					</div>
+					<div
+						onClick={() => setSidebarTab("databases")}
+						className="p-2 rounded-xl hover:bg-white/10 cursor-pointer transition-colors"
+					>
+						<LuHardDrive size={18} />
 					</div>
 					<div className="p-2 rounded-xl hover:bg-white/10 cursor-pointer transition-colors">
 						<LuHelpCircle size={18} />

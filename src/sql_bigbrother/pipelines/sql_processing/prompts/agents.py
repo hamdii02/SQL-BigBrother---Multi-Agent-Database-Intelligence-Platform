@@ -3,7 +3,9 @@ from .configs import GROQ_API_BASE, GROQ_MODEL_NAME, GROQ_API_KEY, \
 SPECIALIST_AGENT_ROLE, SPECIALIST_AGENT_GOAL, SPECIALIST_AGENT_BACKSTORY, \
 EXPERT_AGENT_ROLE, EXPERT_AGENT_GOAL, EXPERT_AGENT_BACKSTORY, \
 TITLE_AGENT_ROLE, TITLE_AGENT_GOAL, TITLE_AGENT_BACKSTORY, \
-RECOMMEND_AGENT_ROLE, RECOMMEND_AGENT_GOAL, RECOMMEND_AGENT_BACKSTORY
+RECOMMEND_AGENT_ROLE, RECOMMEND_AGENT_GOAL, RECOMMEND_AGENT_BACKSTORY, \
+INTRO_AGENT_ROLE, INTRO_AGENT_GOAL, INTRO_AGENT_BACKSTORY, \
+COORDINATOR_AGENT_ROLE, COORDINATOR_AGENT_GOAL, COORDINATOR_AGENT_BACKSTORY
 
 # Set up API keys if available, otherwise use dummy for Ollama fallback
 if GROQ_API_KEY:
@@ -95,4 +97,25 @@ class SQLAgents():
             verbose=True,
             llm=f"ollama/{model}"
         )
-        
+    
+    def sql_introduction_agent(self, model=None):
+        model = model or self.default_model
+        return Agent(
+            role=INTRO_AGENT_ROLE,
+            goal=INTRO_AGENT_GOAL,
+            backstory=dedent(INTRO_AGENT_BACKSTORY),
+            allow_delegation=False,
+            verbose=True,
+            llm=f"ollama/{model}"
+        )
+    
+    def conversation_coordinator_agent(self, model=None):
+        model = model or self.default_model
+        return Agent(
+            role=COORDINATOR_AGENT_ROLE,
+            goal=COORDINATOR_AGENT_GOAL,
+            backstory=dedent(COORDINATOR_AGENT_BACKSTORY),
+            allow_delegation=True,  # Can delegate to SQL agents
+            verbose=True,
+            llm=f"ollama/{model}"
+        )
