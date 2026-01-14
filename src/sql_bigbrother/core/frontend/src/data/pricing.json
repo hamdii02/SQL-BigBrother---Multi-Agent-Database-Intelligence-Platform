@@ -1,0 +1,105 @@
+{
+    "free": {
+        "label": "Starter",
+        "desc": "Perfect for getting started with SQL analytics and learning the fundamentals",
+        "price": {
+            "integer": "0",
+            "decimal": ".00"
+        },
+        "benefits": [
+            {
+                "content": "10 queries per day",
+                "isChecked": true
+            },
+            {
+                "content": "Basic AI models (Qwen 2.5 7B)",
+                "isChecked": true
+            },
+            {
+                "content": "Standard visualizations",
+                "isChecked": true
+            },
+            {
+                "content": "Community support",
+                "isChecked": true
+            },
+            {
+                "content": "Advanced AI models",
+                "isChecked": false
+            },
+            {
+                "content": "Priority support",
+                "isChecked": false
+            },
+            {
+                "content": "Custom integrations",
+                "isChecked": false
+            }
+        ]
+    },
+    "premium": {
+        "label": "Professional",
+        "desc": "Unlock the full power of SQL BigBrother with advanced AI models and unlimited queries",
+        "price": {
+            "integer": "19",
+            "decimal": ".99"
+        },
+        "benefits": [
+            {
+                "content": "Unlimited queries",
+                "isChecked": true
+            },
+            {
+                "content": "All AI models (GPT, Qwen, Mistral)",
+                "isChecked": true
+            },
+            {
+                "content": "Advanced visualizations",
+                "isChecked": true
+            },
+            {
+                "content": "Export capabilities",
+                "isChecked": true
+            },
+            {
+                "content": "Priority support",
+                "isChecked": true
+            },
+            {
+                "content": "API access",
+                "isChecked": true
+            }
+        ]
+    },
+    "business": {
+        "label": "Enterprise",
+        "desc": "Enterprise-grade SQL analytics with custom integrations and dedicated support",
+        "price": {
+            "integer": "99",
+            "decimal": ".99"
+        },
+        "benefits": [
+            {
+                "content": "Everything in Professional",
+                "isChecked": true
+            },
+            {
+                "content": "Custom AI model training",
+                "isChecked": true
+            },
+            {
+                "content": "Dedicated support team",
+                "isChecked": true
+            },
+            {
+                "content": "On-premise deployment",
+                "isChecked": true
+            },
+            {
+                "content": "SSO & advanced security",
+                "isChecked": true
+            }
+        ]
+    }
+
+}

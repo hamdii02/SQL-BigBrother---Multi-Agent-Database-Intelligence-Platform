@@ -1,0 +1,91 @@
+{
+	"files.autoSave": "afterDelay",
+	"terminal.integrated.env.windows": {},
+	"tabnine.experimentalAutoImports": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"console-ninja.featureSet": "Community",
+	"editor.tokenColorCustomizations": {
+		"[Jetbrains Fleet]": {
+			"textMateRules": [
+				{
+					"scope": "string",
+					"settings": {
+						"foreground": "#FF9B9B"
+					}
+				},
+				{
+					"scope": "meta.tag, support.class",
+					"settings": {
+						"foreground": "#82D2CE"
+					}
+				},
+				{
+					"scope": "entity.name.type.class",
+					"settings": {
+						"foreground": "#FFF6B1"
+					}
+				},
+				{
+					"scope": "variable.other.property.js",
+					"settings": {
+						"foreground": "#A3D8BF"
+					}
+				},
+			]
+		}
+	},
+	"console-ninja.darkTheme.log.decorationAttachmentRenderOptions": {
+		"border": null,
+		"borderColor": null,
+		"fontStyle": null,
+		"fontWeight": null,
+		"textDecoration": null,
+		"color": "#71B190",
+		"backgroundColor": null,
+		"margin": "1em",
+		"width": null,
+		"height": null
+	},
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"editor.formatOnSave": true,
+	"editor.lineHeight": 28,
+	"update.mode": "default",
+	"editor.guides.indentation": false,
+	"workbench.preferredDarkColorTheme": "Jetbrains Fleet",
+	"editor.fontFamily": "Cascadia Mono",
+	"editor.fontVariations": false,
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"terminal.integrated.fontSize": 13,
+	"terminal.integrated.lineHeight": 1.4,
+	"terminal.integrated.fontFamily": "Cascadia Mono, JetBrains Mono, Consolas",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"workbench.colorCustomizations": {
+		"gitDecoration.modifiedResourceForeground": "#71B190",
+		"gitDecoration.untrackedResourceForeground": "#E493B3",
+		"gitDecoration.stageModifiedResourceForeground": "#82D2CE",
+		"gitDecoration.conflictingResourceForeground": "#aaa0fa",
+		"terminal.ansiGreen": "#71B190",
+		"terminal.ansiRed": "#dd7c7c",
+		"list.activeSelectionBackground": "#31304D",
+		"list.inactiveSelectionBackground": "#31304D",
+	},
+	"workbench.productIconTheme": "material-product-icons",
+	"editor.fontSize": 15,
+	"rest-client.fontFamily": "JetBrains Mono",
+	"workbench.colorTheme": "Jetbrains Fleet",
+	"rest-client.fontSize": 13,
+	"workbench.iconTheme": "gruvbox-material-icon-theme",
+	"glassit.alpha": 200,
+	"prisma.showPrismaDataPlatformNotification": false,
+}

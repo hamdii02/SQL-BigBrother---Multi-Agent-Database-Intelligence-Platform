@@ -1,0 +1,24 @@
+@BACKEND_URL = http://localhost:2405/api/v1
+
+###
+
+POST {{BACKEND_URL}}/auth/signUp
+Content-Type: application/json
+
+{
+    "email": "nkeyskuo124@gmail.com",
+    "username": "Sheldon Kuo",
+    "password": "123123",
+    "confirmPassword": "123123",
+    "gender": "male"
+}
+
+###
+
+POST {{BACKEND_URL}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "nkeyskuo124@gmail.com",
+    "password": "123123"
+}

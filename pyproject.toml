@@ -1,0 +1,56 @@
+[build-system]
+requires = [
+    "setuptools",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.10"
+name = "sql_bigbrother"
+readme = "README.md"
+dynamic = [
+    "version",
+]
+dependencies = [
+    "ipython>=8.10",
+    "jupyterlab>=3.0",
+    "notebook",
+    "kedro[jupyter]~=1.1.1",
+    "kedro-datasets[pandas-csvdataset, pandas-exceldataset, pandas-parquetdataset, plotly-plotlydataset, plotly-jsondataset, matplotlib-matplotlibdataset]>=3.0",
+    "kedro-viz>=6.7.0",
+    "scikit-learn~=1.5.1",
+    "seaborn~=0.12.1",
+    "fastapi>=0.123.4",
+    "uvicorn>=0.38.0",
+    "crewai>=1.6.1",
+    "langchain-community>=0.4.1",
+    "mysql-connector-python>=9.5.0",
+    "python-dotenv>=1.2.1",
+    "python-multipart>=0.0.20",
+    "npm>=0.1.1",
+    "langchain-ollama>=1.0.0",
+    "requests>=2.31.0",
+    "litellm>=1.80.7",
+]
+
+[project.scripts]
+sql-bigbrother = "sql_bigbrother.__main__:main"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.setuptools.dynamic.version]
+attr = "sql_bigbrother.__version__"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+namespaces = false
+
+[tool.kedro]
+package_name = "sql_bigbrother"
+project_name = "SQL BigBrother"
+kedro_init_version = "1.1.1"
+tools = "['None']"
+example_pipeline = "True"
+source_dir = "src"

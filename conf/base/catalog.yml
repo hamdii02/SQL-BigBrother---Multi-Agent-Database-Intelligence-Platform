@@ -1,0 +1,54 @@
+# SQL BigBrother Data Catalog
+# This file defines all data sources and outputs for the SQL BigBrother project
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# Input datasets
+schema_content:
+  type: text.TextDataset
+  filepath: data/01_raw/schema_content.txt
+
+requirement:
+  type: text.TextDataset  
+  filepath: data/01_raw/requirement.txt
+
+schema:
+  type: text.TextDataset
+  filepath: data/01_raw/schema.sql
+
+model:
+  type: text.TextDataset
+  filepath: data/01_raw/model.txt
+
+is_explain:
+  type: json.JSONDataset
+  filepath: data/01_raw/is_explain.json
+
+# Intermediate datasets
+schema_processing_result:
+  type: json.JSONDataset
+  filepath: data/02_intermediate/schema_processing_result.json
+  versioned: true
+
+# Output datasets  
+sql_query_result:
+  type: json.JSONDataset
+  filepath: data/03_primary/sql_query_result.json
+  versioned: true
+
+# SQL sample files for testing
+sample_schemas:
+  type: text.TextDataset
+  filepath: data/01_raw/sample_schemas/
+  
+# Query history
+query_history:
+  type: pandas.CSVDataset
+  filepath: data/04_feature/query_history.csv
+  
+# Performance metrics
+query_performance_metrics:
+  type: json.JSONDataset
+  filepath: data/05_model_input/query_performance_metrics.json
+  versioned: true

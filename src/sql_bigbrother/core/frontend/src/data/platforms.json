@@ -1,0 +1,34 @@
+[
+    {
+        "label": "facebook",
+        "img": "/platforms/facebook.png"
+    },
+    {
+        "label": "instagram",
+        "img": "/platforms/instagram.png"
+    },
+    {
+        "label": "patreon",
+        "img": "/platforms/patreon.png"
+    },
+    {
+        "label": "short",
+        "img": "/platforms/short.png"
+    },
+    {
+        "label": "twitch",
+        "img": "/platforms/twitch.png"
+    },
+    {
+        "label": "vimeo",
+        "img": "/platforms/vimeo.png"
+    },
+    {
+        "label": "youtube",
+        "img": "/platforms/youtube.png"
+    },
+    {
+        "label": "spacex",
+        "img": "/platforms/spacex.png"
+    }
+]

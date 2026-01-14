@@ -1,0 +1,34 @@
+## Query Analysis:
+
+**Explanation:**
+
+This SQL query retrieves a list of 20 orders along with customer information. Here's a breakdown:
+
+1. **`SELECT o.order_id, c.customer_name, o.order_date, o.total_amount`**: This part specifies the columns to be retrieved from the database. 
+   - `o.order_id`: The order ID from the `Orders` table (aliased as `o`).
+   - `c.customer_name`: The customer name from the `Customer` table (aliased as `c`).
+   - `o.order_date`: The order date from the `Orders` table.
+   - `o.total_amount`: The total amount of the order from the `Orders` table.
+
+2. **`FROM Orders o JOIN Customer c ON o.customer_id = c.customer_id`**: This section defines the tables involved and how they are related.
+   - `FROM Orders o`:  Specifies the `Orders` table as the primary source and assigns it the alias `o` for brevity.
+   - `JOIN Customer c`: Joins the `Orders` table with the `Customer` table, using the alias `c` for the `Customer` table.
+   - `ON o.customer_id = c.customer_id`: This is the join condition. It links rows from the `Orders` table to rows in the `Customer` table based on matching `customer_id` values in both tables.
+
+3. **`LIMIT 20`**: This clause limits the number of rows returned by the query to 20.
+
+**Suggestion:**
+
+- **Create an Index:**  To improve query performance, consider creating an index on the `customer_id` column in both the `Orders` and `Customer` tables. This will allow the database to quickly locate matching rows during the join operation.
+
+```sql
+-- Example for Orders table
+CREATE INDEX idx_orders_customer_id ON Orders (customer_id);
+
+-- Example for Customer table
+CREATE INDEX idx_customers_customer_id ON Customer (customer_id);
+```
+
+**Problems:**
+
+- **No Indexing:** Without an index on the `customer_id` column, the query might perform a full table scan on both `Orders` and `Customer` tables to find matching rows. This can be slow, especially for large datasets.

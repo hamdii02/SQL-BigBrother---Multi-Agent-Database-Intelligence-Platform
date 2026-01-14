@@ -1,0 +1,11 @@
+@BACKEND_URL = http://localhost:2405/api/v1
+
+###
+
+DELETE {{BACKEND_URL}}/chat/delete
+Content-Type: application/json
+x-client-id: 669363d0289d0de343efba07
+
+{
+    "chatId": "6695935b18c7af7f86a16e04"
+}

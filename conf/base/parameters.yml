@@ -1,0 +1,64 @@
+# Parameters for SQL BigBrother project
+
+# Database configuration
+database:
+  host: localhost
+  port: 3306
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+  setup_database: ${DB_NAME_SETUP:sys}
+  use_database: ${DB_NAME_USE}
+
+# AI/LLM configuration  
+ai_models:
+  groq:
+    api_base: ${GROQ_API_BASE}
+    model_name: ${GROQ_MODEL_NAME}
+    api_key: ${GROQ_API_KEY}
+  
+  local_models:
+    - llama3:8b-instruct
+    - mistral:7b-instruct
+    - phi3:3.8b
+    - gamma2:9b-instruct-q4_1
+
+# Agent configuration
+agents:
+  sql_specialist:
+    role: "SQL Specialist"
+    goal: "Design optimical SQL queries for database"
+    allow_delegation: false
+    verbose: true
+    
+  sql_expert:
+    role: "SQL Expert" 
+    goal: "Analyze and explain SQL queries"
+    allow_delegation: false
+    verbose: true
+    
+  title_agent:
+    role: "Chat Title Generator"
+    goal: "Generate meaningful titles for SQL conversations"
+    allow_delegation: false
+    verbose: true
+    
+  recommend_agent:
+    role: "Question Recommender"
+    goal: "Generate meaningful recommended questions for SQL schema"
+    allow_delegation: false
+    verbose: true
+
+# Processing configuration
+processing:
+  max_retries: 3
+  timeout_seconds: 300
+  enable_caching: true
+  
+# FastAPI configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins:
+    - "http://localhost:5173"
+    - "http://localhost:3000"
+  reload: true

@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # Frontend (React)
+  frontend:
+    build:
+      context: ./src/sql_bigbrother/core/frontend
+      dockerfile: Dockerfile
+    container_name: sql-bigbrother-frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - sql-bigbrother-network
+    depends_on:
+      - backend
+      - kedro-api
+
+  # Authentication Backend (Node.js)
+  backend:
+    build:
+      context: ./src/sql_bigbrother/core/auth
+      dockerfile: Dockerfile
+    container_name: sql-bigbrother-backend
+    ports:
+      - "2405:2405"
+    networks:
+      - sql-bigbrother-network
+    environment:
+      - MONGODB_URL=mongodb://mongodb-backend:27017/EzChatDev  
+      - FRONTEND_URL=http://frontend:5173
+    depends_on:
+      - mongodb-backend
+
+  # MongoDB for Authentication
+  mongodb-backend:
+    image: mongo:latest
+    container_name: sql-bigbrother-mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - sql-bigbrother-network
+
+  # Kedro API Service (Python FastAPI)
+  kedro-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sql-bigbrother-kedro-api
+    ports:
+      - "8000:8000"
+    networks:
+      - sql-bigbrother-network
+    environment:
+      - DB_USER=${DB_USER:-root}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME_SETUP=${DB_NAME_SETUP:-sys}
+      - DB_NAME_USE=${DB_NAME_USE:-sql_bigbrother_db}
+      - GROQ_API_BASE=${GROQ_API_BASE:-https://api.groq.com/openai/v1}
+      - GROQ_MODEL_NAME=${GROQ_MODEL_NAME:-gemma2-9b-it}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - mysql-db
+    volumes:
+      - ./data:/app/data
+      - ./conf:/app/conf
+
+  # MySQL Database for SQL Processing
+  mysql-db:
+    image: mysql:8.0
+    container_name: sql-bigbrother-mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - sql-bigbrother-network
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME_USE:-sql_bigbrother_db}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  sql-bigbrother-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
