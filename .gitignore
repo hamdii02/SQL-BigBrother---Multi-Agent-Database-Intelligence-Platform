@@ -8,6 +8,9 @@ conf/local/**
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
 
+# Firebase configuration with credentials
+src/sql_bigbrother/core/frontend/src/firebase/config.js
+
 # ignore everything in the following folders
 data/**
 

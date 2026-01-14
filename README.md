@@ -168,6 +168,51 @@ Supported model formats:
 
 ## Configuration
 
+### Firebase Configuration (Required)
+
+Before running the application, you need to configure Firebase for authentication and data storage:
+
+1. **Create a Firebase project** at [Firebase Console](https://console.firebase.google.com/)
+
+2. **Copy the example configuration file**:
+   ```bash
+   cd src/sql_bigbrother/core/frontend/src/firebase
+   cp config.example.js config.js
+   ```
+
+3. **Update Firebase configuration** in:
+   ```
+   src/sql_bigbrother/core/frontend/src/firebase/config.js
+   ```
+   
+   Replace the configuration with your Firebase project credentials:
+   ```javascript
+   const firebaseConfig = {
+     apiKey: "YOUR_API_KEY",
+     authDomain: "YOUR_AUTH_DOMAIN",
+     projectId: "YOUR_PROJECT_ID",
+     storageBucket: "YOUR_STORAGE_BUCKET",
+     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+     appId: "YOUR_APP_ID"
+   };
+   ```
+
+4. **Update environment variables** (optional - if using `.env` file):
+   ```bash
+   # Create .env file in frontend directory
+   cd src/sql_bigbrother/core/frontend
+   
+   # Add Firebase configuration
+   VITE_FIREBASE_API_KEY=your_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   ```
+
+> **Note**: The `config.js` file is gitignored to prevent accidental credential commits. Always use `config.example.js` as a template.
+
 ### AI Models
 The system automatically detects available Ollama models and uses the best one available:
 - **qwen2.5:7b**: Fast, suitable for most tasks
