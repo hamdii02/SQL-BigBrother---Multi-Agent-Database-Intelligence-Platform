@@ -6,8 +6,6 @@
 
 SQL BigBrother is a multi-agent AI-powered SQL optimization system built with Kedro 1.1.1. This system uses CrewAI agents and **local Ollama models** to help users generate, optimize, and analyze SQL queries based on database schemas. The application runs entirely locally without requiring external API keys.
 
-> **🆕 Latest Update**: Fully migrated from external APIs (OpenAI/Groq) to local Ollama models for complete privacy and offline operation. The system automatically detects and uses the best available local model.
-
 ## Features
 
 - 🤖 **Local AI Processing**: Uses Ollama for local LLM inference (no external API keys required)
