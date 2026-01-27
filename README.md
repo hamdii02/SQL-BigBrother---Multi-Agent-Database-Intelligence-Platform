@@ -102,6 +102,29 @@ sql-bigbrother/
 └── run_server.py               # FastAPI server startup script
 ```
 
+## 🎥 Demo
+
+### Video Demo
+
+[📹 Watch Demo Video](./media/demo_sql_agents.m4v)
+
+### Screenshots
+
+#### Interface Overview
+![Interface Overview](./media/Capture%20d'écran%202026-01-27%20à%2017.14.23.png)
+
+#### Chat Interface & SQL Query Generation
+![Chat Interface](./media/Capture%20d'écran%202026-01-27%20à%2017.14.43.png)
+
+#### Query Results & Data Visualization
+![Query Results](./media/Capture%20d'écran%202026-01-27%20à%2017.15.09.png)
+
+#### Schema Analysis
+![Schema Analysis](./media/Capture%20d'écran%202026-01-27%20à%2017.15.17.png)
+
+#### Query Explanation & Optimization
+![Query Explanation](./media/Capture%20d'écran%202026-01-27%20à%2017.15.57.png)
+
 ## Prerequisites
 
 1. **Install Ollama**: Download and install [Ollama](https://ollama.ai)

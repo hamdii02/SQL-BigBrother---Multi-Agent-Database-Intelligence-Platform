@@ -139,23 +139,6 @@ export default function ChatTab({
 						})}
 					</ul>
 				</div>
-
-				{/* UPGRADE PLAN */}
-				<Link to={'/pricing'} className="absolute bottom-3 w-[90%] translate-x-[-50%] left-[50%] upgrade-plan cursor-pointer h-16 flex items-center justify-start rounded-xl hover:bg-[#353535]">
-					<div className="flex">
-						<div className="w-16 flex items-center justify-center">
-							<LuZap size={25} />
-						</div>
-						<div className="flex flex-1 flex-col">
-							<div className="font-bold text-white">
-								Upgrade plan
-							</div>
-							<div className="text-[#999]">
-								Get Gemma2, Mistral, and more
-							</div>
-						</div>
-					</div>
-				</Link>
 			</div>
 		</>
 	);

@@ -98,41 +98,9 @@ def process_sql_query(requirement: str, schema: str, model: str, is_explain: boo
         
         filtered_schema = filterSchema_v2(schema)
         
-        # Step 1: Use coordinator to classify the question type
-        coordinator = agents.conversation_coordinator_agent(model)
-        coordinator_task = tasks.conversation_coordinator_task(
-            coordinator, 
-            requirement, 
-            filtered_schema,
-            chat_history or []
-        )
-        
-        # Run coordinator to determine intent
-        coordinator_crew = Crew(
-            agents=[coordinator],
-            tasks=[coordinator_task],
-            verbose=True,
-            process=Process.sequential
-        )
-        coordinator_crew.kickoff()
-        
-        coordinator_response = coordinator_task.output.raw
-        
-        # Check if this is a conversational question (greetings, schema questions, etc.)
-        conversational_keywords = ['hello', 'hi', 'help', 'what can you', 'how does this work', 'explain', 'what tables', 'what is', 'tell me about']
-        is_conversational = any(keyword in requirement.lower() for keyword in conversational_keywords) and 'NEEDS_SQL_QUERY' not in coordinator_response
-        
-        if is_conversational or ('NEEDS_SQL_QUERY' not in coordinator_response and not any(word in requirement.lower() for word in ['show', 'get', 'find', 'list', 'count', 'how many', 'total', 'sum', 'average'])):
-            # Direct conversational response - no SQL needed
-            return {
-                'query': '',
-                'explain': f"💬 {coordinator_response}",
-                'rows': [],
-                'columns': [],
-                'conversational_response': True
-            }
-        
-        # Step 2: SQL query needed - Build context from chat history
+        # OPTIMIZATION: Removed coordinator agent to speed up response time
+        # All requests now directly go to SQL generation
+        # Step 1: Build context from chat history
         context = ""
         if chat_history and len(chat_history) > 0:
             context = "\n\nPrevious conversation:\n"
