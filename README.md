@@ -106,9 +106,9 @@ sql-bigbrother/
 
 ### Video Demo
 
-<video src="./media/demo_sql_agents.m4v" controls width="100%" preload="metadata">
-  Your browser does not support the video tag. <a href="./media/demo_sql_agents.m4v">Download the demo video</a>.
-</video>
+![SQL BigBrother Demo](./media/demo.gif)
+
+> **Note**: [Download the full video here](./media/demo_sql_agents.m4v) for better quality.
 
 ### Screenshots
 
