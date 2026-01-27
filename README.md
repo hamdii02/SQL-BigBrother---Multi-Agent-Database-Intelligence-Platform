@@ -106,24 +106,26 @@ sql-bigbrother/
 
 ### Video Demo
 
-[📹 Watch Demo Video](./media/demo_sql_agents.m4v)
+<video src="./media/demo_sql_agents.m4v" controls width="100%" preload="metadata">
+  Your browser does not support the video tag. <a href="./media/demo_sql_agents.m4v">Download the demo video</a>.
+</video>
 
 ### Screenshots
 
 #### Interface Overview
-![Interface Overview](./media/Capture%20d'écran%202026-01-27%20à%2017.14.23.png)
+![Interface Overview](./media/Capture1.png)
 
 #### Chat Interface & SQL Query Generation
-![Chat Interface](./media/Capture%20d'écran%202026-01-27%20à%2017.14.43.png)
+![Chat Interface](./media/Capture2.png)
 
 #### Query Results & Data Visualization
-![Query Results](./media/Capture%20d'écran%202026-01-27%20à%2017.15.09.png)
+![Query Results](./media/Capture3.png)
 
 #### Schema Analysis
-![Schema Analysis](./media/Capture%20d'écran%202026-01-27%20à%2017.15.17.png)
+![Schema Analysis](./media/Capture4.png)
 
 #### Query Explanation & Optimization
-![Query Explanation](./media/Capture%20d'écran%202026-01-27%20à%2017.15.57.png)
+![Query Explanation](./media/Capture5.png)
 
 ## Prerequisites
 
